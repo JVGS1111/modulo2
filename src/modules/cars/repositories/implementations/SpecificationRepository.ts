@@ -4,18 +4,8 @@ import { IcreateSpecificationDTO, ISpecificationsRepository } from "../ISpecific
 class SpecificationsRepository implements ISpecificationsRepository {
     private specifications: Specification[]
 
-    private static INSTANCES: SpecificationsRepository;
+    constructor() { }
 
-    private constructor() {
-        this.specifications = [];
-    }
-
-    public static getInstances(): SpecificationsRepository {
-        if (!SpecificationsRepository.INSTANCES) {
-            this.INSTANCES = new SpecificationsRepository();
-        }
-        return SpecificationsRepository.INSTANCES;
-    }
 
     create({ description, name }: IcreateSpecificationDTO): void {
         const specification = new Specification();
