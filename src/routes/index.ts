@@ -10,4 +10,5 @@ router.use("/categories", categoriesRoutes);
 router.use("/specifications", specificationRoutes);
 router.use("/users", userRoutes);
 router.use(authRoutes);
+
 export { router };
