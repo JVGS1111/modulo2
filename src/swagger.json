@@ -104,30 +104,30 @@
                         "description": "Category created"
                     }
                 }
-            },
-            "/specifications": {
-                "post": {
-                    "tags": [
-                        "Specifications"
-                    ],
-                    "summary": "Create a sprecification",
-                    "description": "Create a new specification",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/Specification"
-                                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": [
+                    "Specifications"
+                ],
+                "summary": "Create a sprecification",
+                "description": "Create a new specification",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Specification"
                             }
                         }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
                     },
-                    "responses": {
-                        "201": {
-                            "description": "Created"
-                        },
-                        "500": {
-                            "description": "Specification already existis"
-                        }
+                    "500": {
+                        "description": "Specification already existis"
                     }
                 }
             }
