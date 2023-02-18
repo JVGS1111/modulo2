@@ -5,8 +5,8 @@ interface IOptions {
 }
 
 getConnectionOptions().then(options => {
-    options as IOptions;
-    //newOptions.host = 'database'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
+    const newOptions = options as IOptions;
+    newOptions.host = 'database'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
     createConnection({
         ...options,
     });
