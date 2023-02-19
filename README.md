@@ -30,19 +30,17 @@ Deve ser possivel listar todos os carros disponiveis por marca
 
 **RF**
 Deve ser possivel cadastrar uma especificação para um carro.
-Deve ser possivel listarr todas as especificações
-Deve ser possivel listar todos os carros
-Apenas um usuario ADMINISTRADOR pode cadastrar novos veiculos.
 
 **RN**
 Não deve ser possivel cadastrar uma especificação para um carro não cadastrado.
 Não deve ser possivel cadastrar uma especificação já existente para o mesmo carro.
+Apenas um usuario ADMINISTRADOR pode cadastrar novos veiculos.
+
 
 # Cadastro de imagem do carro
 
 **RF**
 Deve ser possivel cadastrar a imagem do carro
-Deve ser possivel listar todos os carros
 
 **RNF**
 utilizar o multer para upload dos arquivos
