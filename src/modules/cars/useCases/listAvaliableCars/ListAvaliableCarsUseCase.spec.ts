@@ -1,4 +1,4 @@
-import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memeory/CarsRepositoryInMemory"
+import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory"
 import { ListAvaliableCarsUseCase } from "./ListAvaliableCarsUseCase"
 
 

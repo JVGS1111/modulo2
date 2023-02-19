@@ -1,6 +1,6 @@
 import { AppError } from "@errors/AppError";
-import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memeory/CarsRepositoryInMemory";
-import { SpecificationsRepositoryInMemory } from "@modules/cars/repositories/in-memeory/SpecificationInMemory";
+import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory";
+import { SpecificationsRepositoryInMemory } from "@modules/cars/repositories/in-memory/SpecificationInMemory";
 import { CreateCarSpecificationUseCase } from "./CreateCarSpecificationUseCase"
 
 let createCarSpecificationUseCase: CreateCarSpecificationUseCase;
