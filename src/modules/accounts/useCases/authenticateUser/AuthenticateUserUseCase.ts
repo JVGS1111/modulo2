@@ -4,7 +4,7 @@ import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@errors/AppError";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { UsersTokenRepositoy } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { UsersTokensRepositoy } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import auth from "@config/auth";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementation/DayjsDateProvider";
@@ -27,11 +27,11 @@ interface IResponse {
 @injectable()
 class AuthenticateUserUseCase {
     constructor(
-        @inject(UsersRepository)
+        @inject("UsersRepository")
         private usersResitory: IUsersRepository,
-        @inject(UsersTokenRepositoy)
-        private usersTokenRepository: IUsersTokensRepository,
-        @inject(DayjsDateProvider)
+        @inject("UsersTokensRepositoy")
+        private usersTokensRepository: IUsersTokensRepository,
+        @inject("DayjsDateProvider")
         private dayjsDateProvider: IDateProvider
     ) { }
 
@@ -68,7 +68,7 @@ class AuthenticateUserUseCase {
         })
         const refresh_token_expires_date = this.dayjsDateProvider.addDays(expires_refresh_token_days);
 
-        await this.usersTokenRepository.create({
+        await this.usersTokensRepository.create({
             user_id: user.id,
             refresh_token: refresh_token,
             expires_date: refresh_token_expires_date
