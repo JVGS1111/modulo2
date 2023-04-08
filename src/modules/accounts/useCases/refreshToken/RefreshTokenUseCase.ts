@@ -1,6 +1,6 @@
 import auth from '@config/auth'
 import { AppError } from '@errors/AppError'
-import { UsersTokensRepositoy } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository'
+import { UsersTokensRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokensRepository'
 import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTokensRepository'
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider'
 import { sign, verify } from 'jsonwebtoken'
@@ -15,7 +15,7 @@ interface IPayload {
 class RefreshTokenUseCase {
 
     constructor(
-        @inject("UsersTokensRepositoy")
+        @inject("UsersTokensRepository")
         private usersTokensRepository: IUsersTokensRepository,
         @inject("DayjsDateProvider")
         private dayjsDateProvider: IDateProvider

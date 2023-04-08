@@ -4,7 +4,7 @@ import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@errors/AppError";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { UsersTokensRepositoy } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import auth from "@config/auth";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementation/DayjsDateProvider";
@@ -29,7 +29,7 @@ class AuthenticateUserUseCase {
     constructor(
         @inject("UsersRepository")
         private usersResitory: IUsersRepository,
-        @inject("UsersTokensRepositoy")
+        @inject("UsersTokensRepository")
         private usersTokensRepository: IUsersTokensRepository,
         @inject("DayjsDateProvider")
         private dayjsDateProvider: IDateProvider

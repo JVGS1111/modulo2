@@ -3,7 +3,7 @@ import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTok
 import { getRepository, Repository } from "typeorm";
 import { UserTokens } from "../entities/UserTokens";
 
-class UsersTokensRepositoy implements IUsersTokensRepository {
+class UsersTokensRepository implements IUsersTokensRepository {
     private repository: Repository<UserTokens>
 
     constructor() {
@@ -35,6 +35,10 @@ class UsersTokensRepositoy implements IUsersTokensRepository {
 
     }
 
+    async findByRefreshToken(refresh_token): Promise<UserTokens> {
+        const userToken = await this.repository.findOne({ refresh_token: refresh_token });
+        return userToken;
+    }
 }
 
-export { UsersTokensRepositoy }
+export { UsersTokensRepository }

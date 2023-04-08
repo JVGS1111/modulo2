@@ -1,5 +1,5 @@
 import auth from "@config/auth";
-import { UsersTokensRepositoy } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken"
 import { AppError } from "../../../../errors/AppError";
@@ -12,7 +12,7 @@ interface IPayload {
 export async function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
 
     const authHeader = req.headers.authorization;
-    const usersTokensRepository = new UsersTokensRepositoy();
+    const usersTokensRepository = new UsersTokensRepository();
 
     if (!authHeader) {
         throw new AppError("Token missing", 401);
