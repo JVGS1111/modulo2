@@ -4,6 +4,7 @@ import createConnection from '@shared/infra/typeorm';
 import { hash } from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import request from 'supertest';
+import { log } from 'handlebars/runtime';
 
 let connection: Connection;
 describe("List categories", () => {
@@ -28,12 +29,11 @@ describe("List categories", () => {
     })
 
     it("should be able to list all categories", async () => {
-        const responseToken = await await request(app).post("/sessions").send({
+        const responseToken = await request(app).post("/sessions").send({
             email: "admin@rentx.com.br",
             password: "admin"
         });
-
-        const { token } = responseToken.body;
+        const { refresh_token } = responseToken.body;
 
         await request(app)
             .post("/categories")
@@ -41,12 +41,10 @@ describe("List categories", () => {
                 name: "Category Supertest",
                 description: "Category supertest"
             }).set({
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${refresh_token}`
             })
 
         const response = await request(app).get("/categories");
-
-        console.log(response.body);
 
         expect(response.status).toBe(200);
         expect(response.body.length).toBe(1);

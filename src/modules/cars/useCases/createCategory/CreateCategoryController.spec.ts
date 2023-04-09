@@ -4,6 +4,7 @@ import createConnection from '@shared/infra/typeorm';
 import { hash } from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import request from 'supertest';
+import { log } from 'handlebars';
 
 let connection: Connection;
 describe("Create Category Controller", () => {
@@ -28,13 +29,12 @@ describe("Create Category Controller", () => {
     })
 
     it("should be able to create a new category", async () => {
-        const responseToken = await await request(app).post("/sessions").send({
+        const responseToken = await request(app).post("/sessions").send({
             email: "admin@rentx.com.br",
             password: "admin"
         });
 
-        console.log(responseToken.body.token);
-        const { token } = responseToken.body;
+        const { refresh_token } = responseToken.body;
 
         const response = await request(app)
             .post("/categories")
@@ -42,20 +42,19 @@ describe("Create Category Controller", () => {
                 name: "Category Supertest",
                 description: "Category supertest"
             }).set({
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${refresh_token}`
             })
 
         expect(response.status).toBe(201);
     })
 
     it("should not be able to create a new category if name already existis", async () => {
-        const responseToken = await await request(app).post("/sessions").send({
+        const responseToken = await request(app).post("/sessions").send({
             email: "admin@rentx.com.br",
             password: "admin"
         });
 
-        console.log(responseToken.body.token);
-        const { token } = responseToken.body;
+        const { refresh_token } = responseToken.body;
 
         const response = await request(app)
             .post("/categories")
@@ -63,7 +62,7 @@ describe("Create Category Controller", () => {
                 name: "Category Supertest",
                 description: "Category supertest"
             }).set({
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${refresh_token}`
             })
 
         expect(response.status).toBe(400);
