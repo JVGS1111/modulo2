@@ -23,7 +23,7 @@ describe("Create Category", () => {
         expect(categoryCreated.name).toBe(category.name);
     });
 
-    it("should not be able to create a new category if name already existis", async () => {
+    it("should not be able to create a new category if name already exists", async () => {
 
         const category = {
             name: "Category Test",
